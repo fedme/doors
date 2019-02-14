@@ -1,0 +1,8 @@
+{
+  "name": "doors",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "bd3d0d43"
+}

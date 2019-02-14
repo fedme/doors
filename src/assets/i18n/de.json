@@ -1,0 +1,20 @@
+{
+  "REGISTRATION": {
+    "TITLE": "Registration",
+    "PARTICIPANT_DATA": "Participant Data",
+    "EXPERIMENT_SETTINGS": "Experiment Settings",
+    "CODE_LABEL": "Code",
+    "GENDER_LABEL": "Gender",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "AGE_LABEL": "Age",
+    "GRADE_LABEL": "Grade",
+    "SUBMIT": "Begin experiment"
+  },
+  "END": {
+    "END": "Ende",
+    "WELL_DONE": "Gut Gemacht!",
+    "PLAY_AGAIN": "Wieder Spielen",
+    "PLAY_AGAIN_CONFIRM": "Wieder Spielen (press again to confirm)"
+  }
+}
