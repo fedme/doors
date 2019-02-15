@@ -11,10 +11,18 @@
     "GRADE_LABEL": "Grade",
     "SUBMIT": "Begin experiment"
   },
+  "TEST": {
+    "NEXT_DOOR": "Next door"
+  },
   "END": {
     "END": "Ende",
     "WELL_DONE": "Gut Gemacht!",
     "PLAY_AGAIN": "Wieder Spielen",
     "PLAY_AGAIN_CONFIRM": "Wieder Spielen (press again to confirm)"
+  },
+  "UI": {
+    "NEXT": "Next",
+    "BACK": "Back",
+    "End": "End"
   }
 }

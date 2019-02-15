@@ -11,6 +11,35 @@ export enum Animal {
     Zebra = 'zebra'
 }
 
+export enum DoorState {
+    Open = 'open',
+    Closed = 'closed'
+}
+
+export class DoorsBattery {
+    doorsOpened: number;
+    initialTimestamp: number;
+    finalTimestamp: number;
+    duration: number;
+
+    constructor() {
+        this.doorsOpened = 0;
+    }
+
+    openDoor() {
+        this.doorsOpened++;
+    }
+
+    start() {
+        this.initialTimestamp = Date.now();
+    }
+
+    stop() {
+        this.finalTimestamp = Date.now();
+        this.duration = this.finalTimestamp - this.initialTimestamp;
+    }
+}
+
 export class Condition {
     id: string;
     animalsNumber: number;

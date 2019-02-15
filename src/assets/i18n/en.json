@@ -11,6 +11,9 @@
     "GRADE_LABEL": "Grade",
     "SUBMIT": "Begin experiment"
   },
+  "TEST": {
+    "NEXT_DOOR": "Next door"
+  },
   "END": {
     "END": "End",
     "WELL_DONE": "Well done!",

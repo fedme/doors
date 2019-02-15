@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IExperiment } from '../common/experiment.interface';
-import { Condition } from './models';
+import { Condition, DoorsBattery } from './models';
 import { Utils } from '../common/utils';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Utils } from '../common/utils';
 export class DoorsService implements IExperiment {
 
   condition: Condition;
+  doorsBattery: DoorsBattery;
 
   constructor() { }
 
@@ -16,10 +17,16 @@ export class DoorsService implements IExperiment {
     console.log('[DoorsService] setupExperiment()');
     this.resetData();
     this.chooseCondition();
+    this.setDoors();
   }
 
   public resetData() {
     this.condition = null;
+    this.doorsBattery = null;
+  }
+
+  setDoors() {
+    this.doorsBattery = new DoorsBattery();
   }
 
   chooseCondition() {
