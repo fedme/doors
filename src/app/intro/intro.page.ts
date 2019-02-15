@@ -15,9 +15,6 @@ export class IntroPage implements OnInit {
     private alertCtrl: AlertController
   ) {
 
-    // TODO: Remove!!
-    this.doors.setupExperiment();
-
   }
 
   ngOnInit() {

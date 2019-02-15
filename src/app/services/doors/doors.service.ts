@@ -72,7 +72,8 @@ export class DoorsService implements IExperiment {
     // TODO: fill data
 
     const data = {
-      condition: this.condition
+      condition: this.condition,
+      doors: this.doorsBattery
     };
 
     return data;

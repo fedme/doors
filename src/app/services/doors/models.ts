@@ -12,8 +12,16 @@ export enum Animal {
 }
 
 export enum DoorState {
+    Closed = 'closed',
     Open = 'open',
-    Closed = 'closed'
+    OpenCrocodile = 'open-croc',
+    OpenElephant = 'open-elephant',
+    OpenHippo = 'open-hippo',
+    OpenLion = 'open-lion',
+    OpenToucan = 'open-toucan',
+    OpenTurtle = 'open-turtle',
+    OpenWhale = 'open-whale',
+    OpenZebra = 'open-zebra'
 }
 
 export class DoorsBattery {
@@ -40,6 +48,32 @@ export class DoorsBattery {
     }
 }
 
+export class AnimalDoorConverter {
+
+    public static animalToDoor(animal: Animal): DoorState {
+        switch (animal) {
+            case Animal.Crocodile:
+                return DoorState.OpenCrocodile;
+            case Animal.Elephant:
+                return DoorState.OpenElephant;
+            case Animal.Hippo:
+                return DoorState.OpenHippo;
+            case Animal.Lion:
+                return DoorState.OpenLion;
+            case Animal.Toucan:
+                return DoorState.OpenToucan;
+            case Animal.Turtle:
+                return DoorState.OpenTurtle;
+            case Animal.Whale:
+                return DoorState.OpenWhale;
+            case Animal.Zebra:
+                return DoorState.OpenZebra;
+            default:
+                return DoorState.Open;
+        }
+    }
+}
+
 export class Condition {
     id: string;
     animalsNumber: number;
@@ -54,7 +88,7 @@ export class Condition {
         const allAnimals = [
             Animal.Crocodile, Animal.Elephant, Animal.Hippo, Animal.Lion, Animal.Toucan,
             Animal.Turtle, Animal.Whale, Animal.Zebra]
-        ;
+            ;
         Utils.shuffleArray(allAnimals);
         this.animals = allAnimals.slice(0, animalsNumber);
 

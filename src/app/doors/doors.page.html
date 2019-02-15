@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Doors</ion-title>
+    <ion-title (click)="unlockMonster()">Doors</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="nextDoor()">{{'TEST.NEXT_DOOR' | translate}}</ion-button>
+      <ion-button *ngIf="!finalDoor" (click)="nextDoor()">{{'TEST.NEXT_DOOR' | translate}}</ion-button>
+      <ion-button *ngIf="finalDoor" (click)="end()">{{'UI.NEXT' | translate}}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
