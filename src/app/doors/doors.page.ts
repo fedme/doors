@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, ToastController } from '@ionic/angular';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DoorsService } from '../services/doors/doors.service';
 import { DoorState, Animal, AnimalDoorConverter } from '../services/doors/models';
@@ -25,27 +25,33 @@ export class DoorsPage implements OnInit {
 
   doorState: DoorState;
   doorVisible: boolean;
-  unlockFinalDoor: boolean;
+  step1Unlocked: boolean;
+  finalDoorUnlocked: boolean;
   finalDoor: boolean;
+  showEndButton: boolean;
 
   constructor(
     private doorsService: DoorsService,
     private alertCtrl: AlertController,
     private navCtrl: NavController,
-    private dataService: DataService
+    private dataService: DataService,
+    private toastCtrl: ToastController
   ) {
-    this.doorState = DoorState.Closed;
-    this.doorVisible = true;
-    this.finalDoor = false;
-    this.unlockFinalDoor = false;
+    this.reset();
   }
 
   ngOnInit() {
+    this.reset();
+    this.doorsService.doorsBattery.start();
+  }
+
+  reset() {
     this.doorState = DoorState.Closed;
     this.doorVisible = true;
     this.finalDoor = false;
-    this.unlockFinalDoor = false;
-    this.doorsService.doorsBattery.start();
+    this.finalDoorUnlocked = false;
+    this.step1Unlocked = false;
+    this.showEndButton = false;
   }
 
   openDoor() {
@@ -55,6 +61,7 @@ export class DoorsPage implements OnInit {
     if (!this.finalDoor) {
       this.doorState = DoorState.Open;
       this.doorsService.doorsBattery.openDoor();
+      setTimeout(_ => this.nextDoor(), 1700);
     } else {
       this.openFinalDoor();
     }
@@ -62,6 +69,7 @@ export class DoorsPage implements OnInit {
 
   openFinalDoor() {
     this.doorState = AnimalDoorConverter.animalToDoor(this.doorsService.condition.animalShowed);
+    this.showEndButton = true;
   }
 
   nextDoor() {
@@ -70,34 +78,32 @@ export class DoorsPage implements OnInit {
     }
     this.doorState = DoorState.Closed;
     this.doorVisible = false;
-    setTimeout(() => this.doorVisible = true, 500);
-    if (this.unlockFinalDoor) {
+    setTimeout(() => this.doorVisible = true, 400);
+    if (this.finalDoorUnlocked) {
       this.finalDoor = true;
     }
   }
 
-  async unlockMonster() {
+  preunlockDoor() {
+    this.step1Unlocked = true;
+    setTimeout(_ => this.step1Unlocked = false, 500);
+  }
 
-    const alert = await this.alertCtrl.create({
-      header: 'Confirm?',
-      message: '',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {}
-        }, {
-          text: 'Okay',
-          handler: () => {
-            this.doorsService.doorsBattery.stop();
-            this.unlockFinalDoor = true;
-          }
-        }
-      ]
+  async unlockDoor() {
+
+    if (this.finalDoorUnlocked || !this.step1Unlocked) {
+      return;
+    }
+
+    this.doorsService.doorsBattery.stop();
+    this.finalDoorUnlocked = true;
+
+    const toast = await this.toastCtrl.create({
+      message: 'Door unlocked',
+      duration: 500
     });
-
-    await alert.present();
+    toast.present();
+    
   }
 
   async end() {
