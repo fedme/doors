@@ -93,8 +93,8 @@ export class Condition {
         this.animals = allAnimals.slice(0, animalsNumber);
 
         // Pick random animal to show
-        Utils.shuffleArray(allAnimals);
-        this.animalShowed = allAnimals[0];
+        const possibleAnimalsToShow = Utils.getShuffledCopy(this.animals);
+        this.animalShowed = possibleAnimalsToShow[0];
     }
 
     static getAll(): Condition[] {
