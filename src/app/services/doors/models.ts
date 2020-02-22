@@ -100,6 +100,7 @@ export class Condition {
     static getAll(): Condition[] {
         return [
             new Condition('1-animals', 1),
+            new Condition('2-animals', 2),
             new Condition('4-animals', 4),
             new Condition('8-animals', 8)
         ];
