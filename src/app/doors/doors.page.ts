@@ -86,7 +86,7 @@ export class DoorsPage implements OnInit {
 
   preunlockDoor() {
     this.step1Unlocked = true;
-    setTimeout(_ => this.step1Unlocked = false, 500);
+    setTimeout(_ => this.step1Unlocked = false, 1500);
   }
 
   async unlockDoor() {
